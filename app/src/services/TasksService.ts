@@ -9,7 +9,7 @@ export class TasksService {
         this.tasksRepository = getCustomRepository(TasksRepository);
     };
 
-    async create(user: string, task: string) {
+    async createTask(user: string, task: string) {
         const taskExists = await this.tasksRepository.findOne({ task });
         if (taskExists) { return taskExists };
 
@@ -20,8 +20,8 @@ export class TasksService {
         return task_;
     };
 
-    // async findTaskByUsername(user: string) {
-    //     const tasks = await this.tasksRepository.findOne({ user });
-    //     return tasks;
-    // };
+    async findTaskByUsername(user: string) {
+        const tasks = await this.tasksRepository.findOne({ user });
+        return tasks;
+    };
 };
