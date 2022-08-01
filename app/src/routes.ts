@@ -6,8 +6,15 @@ const routes = Router();
 
 const tasksController = new TasksController();
 
-routes.get('/tasks/:user', tasksController.findTaskByUsername);
+// Get routes.
+routes.get('/tasks/:username', tasksController.findTaskByUsername);
 
+// Post routes.
 routes.post('/tasks', tasksController.createTask);
+
+// Put routes;
+
+// Delete routes.
+routes.delete('/tasks/:task', tasksController.deleteTask);
 
 export { routes };

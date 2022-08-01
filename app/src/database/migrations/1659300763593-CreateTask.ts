@@ -12,8 +12,13 @@ export class CreateTask1659300763593 implements MigrationInterface {
                         isPrimary: true
                     },
                     {
-                        name: 'user',
-                        type: 'varchar'
+                        name: 'username',
+                        type: 'varchar',
+                        isNullable: false
+                    },
+                    {
+                        name: 'weight',
+                        type: 'number'
                     },
                     {
                         name: 'task',
@@ -21,6 +26,16 @@ export class CreateTask1659300763593 implements MigrationInterface {
                     },
                     {
                         name: 'created_at',
+                        type: 'timestamp',
+                        default: 'now()'
+                    },
+                    {
+                        name: 'updated_at',
+                        type: 'timestamp',
+                        default: 'now()'
+                    },
+                    {
+                        name: 'deleted_at',
                         type: 'timestamp',
                         default: 'now()'
                     }

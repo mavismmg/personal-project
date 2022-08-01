@@ -6,16 +6,26 @@ import { TasksRepository } from '../repositories/TasksRepository';
 
 export class TasksController {
     async createTask(request: Request, response: Response) : Promise<Response> {
-        const { user, task } = request.body;
+        const { username, weight, task } = request.body;
         const tasksService = new TasksService();
-        const task_ = await tasksService.createTask(user, task);
-        return response.json(task_);
+        const registerTask = await tasksService.createTask(username, weight, task);
+        return response.json(registerTask);
+    };
+
+    async updateTask() {};
+
+    async deleteTask(request: Request, response: Response) {
+        const { task } = request.params;
+        const { username } = request.body;
+        const tasksService = new TasksService();
+        const taskDeleted = await tasksService.deleteTask(task);
+        return response.json(`Task from user ${username} was deleted.`);
     };
 
     async findTaskByUsername(request: Request, response: Response) {
-        const { user } = request.params;
+        const { username } = request.params;
         const tasksService = new TasksService();
-        const task_ = await tasksService.findTaskByUsername(user);
-        return response.json(task_);
+        const findTask = await tasksService.findTaskByUsername(username);
+        return response.json(findTask);
     };
 };

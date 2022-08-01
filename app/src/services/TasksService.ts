@@ -9,19 +9,28 @@ export class TasksService {
         this.tasksRepository = getCustomRepository(TasksRepository);
     };
 
-    async createTask(user: string, task: string) {
+    async createTask(username: string, weight: number, task: string) {
         const taskExists = await this.tasksRepository.findOne({ task });
-        if (taskExists) { return taskExists };
-
-        const task_ = this.tasksRepository.create({ user, task });
-
-        await this.tasksRepository.save(task_);
-    
-        return task_;
+        if (taskExists) { 
+            return taskExists
+        }
+        const registerTask = this.tasksRepository.create({ username, weight, task });
+        await this.tasksRepository.save(registerTask);
+        return registerTask;
     };
 
-    async findTaskByUsername(user: string) {
-        const tasks = await this.tasksRepository.findOne({ user });
+    async updateTask() {};
+
+    async deleteTask(task: string) {
+        await this.tasksRepository.createQueryBuilder()
+            .delete()
+            .from(Task)
+            .where("task = :task", { task })
+            .execute();
+    };
+
+    async findTaskByUsername(username: string) {
+        const tasks = await this.tasksRepository.findOne({ username });
         return tasks;
     };
 };
