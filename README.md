@@ -1,5 +1,7 @@
 ## Installation 
 
+### Instructions for installing application for develop mode, do not follow this for installing application in production, for production follow Docker Instructions
+
 - Clone the repository using the command `git clone https://github.com/mavismmg/personal-project.git`
 - Enter directory using the command `cd personal-project`
 - Run `yarn install` to install packages.
