@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  express:
+    build:
+      context: ./
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/app/usr/src/app
+      - /app/usr/src/app/node_modules
+    environment:
+      - NODE_ENV=development
+    command:
+      - nodemon --exec npx ts-node ./app/server.ts
